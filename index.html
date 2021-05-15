@@ -20,11 +20,35 @@
                 </header>
             </div>
             <div class="row" class="body">
+                <div class="col-3" id="city-search">
+                    <h3>Search for a City:</h3>
+                    <div class="row" id="search-bar">
+                        <div class="col-11">
+                            <input type="city" class="form-control" id="city-input">
+                        </div>
+                        <div class="col-1">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="row" id="search-history">
+                        <ul class="list-group" id="city-list">
 
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-9" id="forecast">
+                    <div class="row" id="today-forecast">
+
+                    </div>
+                    <div class="row" id="five-day-forecast">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/2d96732f52.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 
