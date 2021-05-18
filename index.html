@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row" id="header">
+            <div class="col-12">
+                <header>
+                    <h1>Weather Dashboard</h1>
+                </header>
+            </div>
+            <div class="row" class="body">
+                <div class="col-3" id="city-search">
+                    <h3>Search for a City:</h3>
+                    <div class="row" id="search-bar">
+                        <div class="col-11">
+                            <input type="city" class="form-control" id="city-input">
+                        </div>
+                        <div class="col-1">
+                            <button type="submit" class="btn btn-primary" id="search-btn"><i
+                                    class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="row" id="search-history">
+                        <ul class="list-group" id="city-list">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-9" id="forecast">
+                    <div class="row" id="today-forecast">
+                        <h2 id="name-date"></h2>
+                        <p id="temp"></p>
+                        <p id="humid"></p>
+                        <p id="wind"></p>
+                        <p id="uv"></p>
+                    </div>
+                    <div class="row" id="five-day-forecast">
+                        <h2>5-Day Forecast:</h2>
+                        <div class="cards">
+                            <div class="card text-white bg-primary mb-3" style="width: 14rem;" id="day-1">
+                                <!-- <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
+                                </div> -->
+                            </div>
+                            <div class="card text-white bg-primary mb-3" style="width: 14rem;" id="day-2">
+                                <!-- <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
+                                </div> -->
+                            </div>
+                            <div class="card text-white bg-primary mb-3" style="width: 14rem;" id="day-3">
+                                <!-- <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
+                                </div> -->
+                            </div>
+                            <div class="card text-white bg-primary mb-3" style="width: 14rem;" id="day-4">
+                                <!-- <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
+                                </div> -->
+                            </div>
+                            <div class="card text-white bg-primary mb-3" style="width: 14rem;" id="day-5">
+                                <!-- <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/2d96732f52.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
