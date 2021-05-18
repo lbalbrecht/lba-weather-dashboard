@@ -4,6 +4,9 @@ header {
 #search-btn {
     margin-left: -20px;
 }
+#five-day-forecast {
+    visibility: hidden;
+}
 .cards {
     display:flex;
 }
