@@ -1,0 +1,12 @@
+header {
+    text-align: center;
+}
+#search-btn {
+    margin-left: -20px;
+}
+.cards {
+    display:flex;
+}
+.card {
+    margin: 5px;
+}
