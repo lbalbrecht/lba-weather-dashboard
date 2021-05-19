@@ -30,14 +30,19 @@
                         </div>
                     </div>
                     <div class="row" id="search-history">
-                        <ul class="list-group" id="city-list">
+                        <div class="col-12">
+                            <ul class="list-group" id="city-list">
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-9" id="forecast">
                     <div class="row" id="today-forecast">
-                        <h2 id="name-date"></h2>
+                        <div id="forecast-head">
+                            <h2 id="name-date"></h2>
+                            <h2><i id="weather-icon"></i></h2>
+                        </div>
                         <p id="temp"></p>
                         <p id="humid"></p>
                         <p id="wind"></p>
@@ -96,6 +101,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

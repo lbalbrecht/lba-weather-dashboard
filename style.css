@@ -6,8 +6,22 @@ header {
     background-color: #C0C0C0;
     height: 100vh;
 }
+#city-search h3 {
+    margin-left: 15px;
+}
+#search-bar {
+    margin-left: 5px;
+}
+#search-history {
+    margin-left: 5px;
+}
 #search-btn {
     margin-left: -20px;
+}
+#city-list {
+    background-color: white;
+    margin-top: 20px;
+    list-style-type: none;
 }
 #today-forecast {
     height: 50vh;
@@ -17,6 +31,12 @@ header {
     padding: 5px;
     border-radius: 30px;
     visibility: hidden;
+}
+#forecast-head {
+    display:flex;
+}
+#name-date {
+    margin-right: 10px;
 }
 #five-day-forecast {
     visibility: hidden;

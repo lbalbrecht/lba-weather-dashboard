@@ -4,6 +4,9 @@ $(document).ready(function () {
     $('#search-btn').on('click', function (event) {
         event.preventDefault();
         var cityInput = $("#city-input").val();
+        var searches = [];
+        searches.push(cityInput)
+        localStorage.setItem('searches', searches)
         ajaxCall(cityInput);
         console.log(cityInput);
     });
@@ -19,6 +22,20 @@ $(document).ready(function () {
             $("#temp").append("Temperature: " + ((response.main.temp - 273.15) * 1.8 + 32).toFixed(1) + `\xB0` + 'F')
             $("#humid").append("Humidity: " + (response.main.humidity) + '%')
             $("#wind").append("Wind speed: " + (response.wind.speed) + 'mph')
+
+            if (response.weather[0].main === "Rain") {
+                $('#weather-icon').addClass('fas fa-cloud-rain')
+            }
+            if (response.weather[0].main === "Clouds") {
+                $('#weather-icon').addClass('fas fa-clouds')
+            }
+            if (response.weather[0].main === "Clear") {
+                $('#weather-icon').addClass('fas fa-sun')
+            }
+            if (response.weather[0].main === "Snow") {
+                $('#weather-icon').addClass('fas fa-snowflakes')
+            }
+
         });
         $.ajax({
             url: `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}`,
@@ -50,12 +67,54 @@ $(document).ready(function () {
             $('#humid5').append('Humidity: ' + ((response.list[32].main.humidity) + '%'));
             $('#wind5').append('Wind speed: ' + ((response.list[32].wind.speed) + 'mph'));
 
-            showForecast();
         })
+        showForecast();
     }
 });
 
 function showForecast() {
     document.querySelector('#today-forecast').style.visibility = 'visible';
     document.querySelector('#five-day-forecast').style.visibility = 'visible';
+};
+
+
+var listEl = document.createElement('li');
+var retrievedSearches = localStorage.getItem('searches');
+
+for (i = 0; i < retrievedSearches.length; i++) {
+    listEl.append(retrievedSearches[i])
 }
+$('#city-list').append(listEl)
+listEl.style.margin = '15px';
+
+$('body').bind('beforeunload', function () {
+    $("#temp").empty();
+    $("#humid").empty();
+    $("#wind").empty();
+
+    $("#date1").empty();
+    $("#temp1").empty();
+    $('#humid1').empty();
+    $('#wind1').empty();
+
+    $("#date2").empty();
+    $("#temp2").empty();
+    $('#humid2').empty();
+    $('#wind2').empty();
+
+    $("#date3").empty();
+    $("#temp3").empty();
+    $('#humid3').empty();
+    $('#wind3').empty();
+
+    $("#date4").empty();
+    $("#temp4").empty();
+    $('#humid4').empty();
+    $('#wind4').empty();
+
+    $("#date5").empty();
+    $("#temp5").empty();
+    $('#humid5').empty();
+    $('#wind5').empty();
+
+})
