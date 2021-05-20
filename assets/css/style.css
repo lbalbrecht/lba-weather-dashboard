@@ -22,6 +22,7 @@ header {
     background-color: white;
     margin-top: 20px;
     list-style-type: none;
+    visibility: hidden;
 }
 #today-forecast {
     height: 50vh;
