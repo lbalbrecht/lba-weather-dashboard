@@ -1,15 +1,29 @@
 var apiKey = '91d06b081975cb9e9ba419e831395fd0';
 
+
 $(document).ready(function () {
+    var searches = [];
     $('#search-btn').on('click', function (event) {
         event.preventDefault();
-        clearPage();
         var cityInput = $("#city-input").val();
-        // var searches = [];
-        // searches.push(cityInput)
-        // localStorage.setItem('searches', searches)
+        localStorage.setItem('searches', cityInput)
+        clearPage();
         ajaxCall(cityInput);
     });
+    
+    function displaySearches() {
+        console.log("Hello world!")
+        var listEl = document.createElement('li');
+        var retrievedSearches = localStorage.getItem('searches');
+        console.log(retrievedSearches)
+        
+        for (i = 0; i < retrievedSearches.length; i++) {
+            listEl.value = retrievedSearches[i]
+            $('#city-list').append(listEl)
+            listEl.style.margin = '15px';
+        }
+    };
+
     function ajaxCall(cityInput) {
         $.ajax({
             url: `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}`,
@@ -34,11 +48,14 @@ $(document).ready(function () {
             if (response.weather[0].main === "Snow") {
                 $('#weather-icon').addClass('fas fa-snowflake')
             }
-        }); 
+        });
+
         $.ajax({
             url: `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}`,
             method: "GET"
         }).then(function (response) {
+            searches.push(cityInput)
+            console.log(searches)
             $("#date1").append((moment().add(1, 'days').format('l')));
             $("#temp1").append('Temperature: ' + (((response.list[0].main.temp - 273.15) * 1.8 + 32).toFixed(1) + `\xB0` + 'F'));
             $('#humid1').append('Humidity: ' + ((response.list[0].main.humidity) + '%'));
@@ -119,8 +136,9 @@ $(document).ready(function () {
                 $('#icon5').addClass('fas fa-snowflake')
             }
         })
+        displaySearches();
         showForecast();
-    }
+    };
 });
 
 function showForecast() {
@@ -129,15 +147,6 @@ function showForecast() {
     document.querySelector('#five-day-forecast').style.visibility = 'visible';
 };
 
-
-// var listEl = document.createElement('li');
-// var retrievedSearches = localStorage.getItem('searches');
-
-// for (i = 0; i < retrievedSearches.length; i++) {
-//     listEl.append(retrievedSearches[i])
-// }
-// $('#city-list').append(listEl)
-// listEl.style.margin = '15px';
 
 function clearPage() {
     $("#name-date").empty();

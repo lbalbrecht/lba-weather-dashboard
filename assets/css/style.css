@@ -1,6 +1,10 @@
+body {
+    background-color: #89F0FA;
+}
 header {
     text-align: center;
     background-color: slategray;
+    padding-bottom: 4px;
 }
 #city-search {
     background-color: #C0C0C0;
