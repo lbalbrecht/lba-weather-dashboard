@@ -27,6 +27,12 @@ header {
     margin-top: 20px;
     list-style-type: none;
     visibility: hidden;
+    border-radius: 4px;
+}
+#previous-search {
+    margin: 15px;
+    border: black;
+    border-width: 1px;
 }
 #today-forecast {
     height: 50vh;

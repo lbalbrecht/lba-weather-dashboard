@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('#search-btn').on('click', function (event) {
         event.preventDefault();
         var cityInput = $("#city-input").val();
-        localStorage.setItem('searches', cityInput)
+        localStorage.setItem('searches', JSON.stringify(searches))
         clearPage();
         ajaxCall(cityInput);
     });
@@ -14,13 +14,15 @@ $(document).ready(function () {
     function displaySearches() {
         console.log("Hello world!")
         var listEl = document.createElement('li');
-        var retrievedSearches = localStorage.getItem('searches');
+        var retrievedSearches = JSON.parse(localStorage.getItem('searches'));
         console.log(retrievedSearches)
         
         for (i = 0; i < retrievedSearches.length; i++) {
-            listEl.value = retrievedSearches[i]
+            listEl.innerHTML = retrievedSearches[i]
             $('#city-list').append(listEl)
-            listEl.style.margin = '15px';
+            listEl.style.height = '30px';
+            listEl.style.border = "1px solid gray";
+            // listEl.style.borderRadius = "4px";
         }
     };
 
