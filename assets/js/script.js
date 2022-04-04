@@ -1,8 +1,28 @@
 var apiKey = '91d06b081975cb9e9ba419e831395fd0';
 
+var listBtn = document.createElement('button');
+var listEl = document.createElement('li');
+listEl.append(listBtn)
+listBtn.style.background = "transparent";
+listBtn.style.border = "transparent"
+
+var retrievedSearches;
+var searches = [];
 
 $(document).ready(function () {
-    var searches = [];
+    
+    retrievedSearches = JSON.parse(localStorage.getItem('searches'));
+
+    if (retrievedSearches !== null) {
+        for (i = 0; i < retrievedSearches.length; i++) {
+            listBtn.innerHTML = retrievedSearches[i]
+            $('#city-list').append(listEl)
+            listEl.style.height = '30px';
+            listEl.style.border = "1px solid gray";
+        }
+    } else {
+        retrievedSearches = []
+    }
     $('#search-btn').on('click', function (event) {
         event.preventDefault();
         var cityInput = $("#city-input").val();
@@ -10,21 +30,27 @@ $(document).ready(function () {
         clearPage();
         ajaxCall(cityInput);
     });
+
+    console.log(retrievedSearches)
+    console.log(searches)
     
-    function displaySearches() {
-        console.log("Hello world!")
-        var listEl = document.createElement('li');
-        var retrievedSearches = JSON.parse(localStorage.getItem('searches'));
-        console.log(retrievedSearches)
+    // displaySearches();
+
+    // function displaySearches() {
+    //     var listBtn = document.createElement('button');
+    //     var listEl = document.createElement('li');
+    //     listEl.append(listBtn)
+    //     listBtn.style.background = "transparent";
+    //     listBtn.style.border = "transparent"
+    //     var retrievedSearches = JSON.parse(localStorage.getItem('searches'));
         
-        for (i = 0; i < retrievedSearches.length; i++) {
-            listEl.innerHTML = retrievedSearches[i]
-            $('#city-list').append(listEl)
-            listEl.style.height = '30px';
-            listEl.style.border = "1px solid gray";
-            // listEl.style.borderRadius = "4px";
-        }
-    };
+    //     for (i = 0; i < retrievedSearches.length; i++) {
+    //         listBtn.innerHTML = retrievedSearches[i]
+    //         $('#city-list').append(listEl)
+    //         listEl.style.height = '30px';
+    //         listEl.style.border = "1px solid gray";
+    //     }
+    // };
 
     function ajaxCall(cityInput) {
         $.ajax({
@@ -57,7 +83,6 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             searches.push(cityInput)
-            console.log(searches)
             $("#date1").append((moment().add(1, 'days').format('l')));
             $("#temp1").append('Temperature: ' + (((response.list[0].main.temp - 273.15) * 1.8 + 32).toFixed(1) + `\xB0` + 'F'));
             $('#humid1').append('Humidity: ' + ((response.list[0].main.humidity) + '%'));
@@ -142,6 +167,22 @@ $(document).ready(function () {
         showForecast();
     };
 });
+
+function displaySearches() {
+    var listBtn = document.createElement('button');
+    var listEl = document.createElement('li');
+    listEl.append(listBtn)
+    listBtn.style.background = "transparent";
+    listBtn.style.border = "transparent"
+    var retrievedSearches = JSON.parse(localStorage.getItem('searches'));
+    
+    for (i = 0; i < retrievedSearches.length; i++) {
+        listBtn.innerHTML = retrievedSearches[i]
+        $('#city-list').append(listEl)
+        listEl.style.height = '30px';
+        listEl.style.border = "1px solid gray";
+    }
+};
 
 function showForecast() {
     document.querySelector('#city-list').style.visibility = 'visible';
